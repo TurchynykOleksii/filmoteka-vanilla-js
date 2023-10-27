@@ -1,0 +1,59 @@
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.movie__list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.movie__item {
+  position: relative;
+  max-width: 300px;
+  list-style: none;
+}
+
+.movie__item_title {
+  font-size: 22px;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.movie__item_genre {
+  color: #FF6B08;
+}
+
+.movie__item_rating {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #fff;
+  top: 15px;
+  left: 15px;
+}
+
+.movie__item_img {
+  overflow: hidden;
+
+}
+
+.movie__item_img img {
+  transition: transform 250ms ease-in;
+}
+
+.movie__item:hover {
+  cursor: pointer;
+}
+
+.movie__item:hover .movie__item_img img {
+  transform: scale(1.1);
+}
