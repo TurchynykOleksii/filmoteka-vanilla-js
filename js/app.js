@@ -49,7 +49,7 @@ const createListMovie = async () => {
       return `
     <li class="movie__item">
     <div class="movie__item_img">
-    <img src="https://image.tmdb.org/t/p/original${poster_path}"/>
+    <img src="https://image.tmdb.org/t/p/original${poster_path}" loading="lazy"/>
     </div>
     <p class="movie__item_title">${original_title}</p>
     <span class="movie__item_rating">${vote_average.toFixed(1)}</span>
