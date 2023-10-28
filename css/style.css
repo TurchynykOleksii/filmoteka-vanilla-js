@@ -123,7 +123,11 @@ ol {
 
 .movie__item_img {
   overflow: hidden;
-
+  width: 300px;
+  height: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .movie__item_img img {
@@ -166,4 +170,46 @@ ol {
 
 .header__item a:hover:before {
   bottom: -5px;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000ac;
+}
+
+.open-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  position: relative;
+  max-width: 500px;
+  padding: 40px 20px;
+  border-radius: 30px;
+  background-color: #2f2f2f;
+  color: white;
+}
+
+.movie__title {
+  font-size: 30px;
+  text-align: center;
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 25px;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.close:hover {
+  cursor: pointer;
 }
