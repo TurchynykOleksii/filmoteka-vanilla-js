@@ -50,6 +50,7 @@ const searchMovie = async query => {
       vote_average,
       release_date,
       genre_ids,
+      id,
     } = res;
 
     const movieGenres = genre_ids.map(id => {
@@ -58,7 +59,7 @@ const searchMovie = async query => {
     });
 
     return `
-    <li class="movie__item">
+    <li class="movie__item" data-id=${id}>
     <div class="movie__item_img">
     <img src="${
       poster_path
@@ -76,6 +77,11 @@ const searchMovie = async query => {
   });
 
   movieList.innerHTML = searchRes;
+  document
+    .querySelectorAll('.movie__item')
+    .forEach(el =>
+      el.addEventListener('click', () => openModal(el.dataset.id))
+    );
 };
 
 searchInput.addEventListener(
