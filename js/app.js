@@ -36,6 +36,32 @@ const getGenres = async () => {
   return genres;
 };
 
+const createSingleCardMovie = (
+  id,
+  poster_path,
+  original_title,
+  vote_average,
+  release_date,
+  movieGenres
+) => {
+  return `
+    <li class="movie__item" data-id=${id}>
+    <div class="movie__item_img">
+    <img src="${
+      poster_path
+        ? `https://image.tmdb.org/t/p/original${poster_path}`
+        : '../img/not_img.jpg'
+    }" loading="lazy"/>
+    </div>
+    <p class="movie__item_title">${original_title}</p>
+    <span class="movie__item_rating">${vote_average.toFixed(1)}</span>
+    <span class="movie__item_genre">${
+      movieGenres ? movieGenres.join(', ') : ''
+    } ${isNaN(release_date) ? new Date(release_date).getFullYear() : ''} </span>
+    </li>
+    `;
+};
+
 const searchMovie = async query => {
   const searchFilm = await fetchApi(
     `https://api.themoviedb.org/3/search/movie?query=${query}`
@@ -58,22 +84,14 @@ const searchMovie = async query => {
       return genre ? genre.name : '';
     });
 
-    return `
-    <li class="movie__item" data-id=${id}>
-    <div class="movie__item_img">
-    <img src="${
-      poster_path
-        ? `https://image.tmdb.org/t/p/original${poster_path}`
-        : 'img/not_img.jpg'
-    }" loading="lazy"/>
-    </div>
-    <p class="movie__item_title">${original_title}</p>
-    <span class="movie__item_rating">${vote_average.toFixed(1)}</span>
-    <span class="movie__item_genre">${movieGenres.join(', ')} | ${new Date(
-      release_date
-    ).getFullYear()} </span>
-    </li>
-    `;
+    return createSingleCardMovie(
+      id,
+      poster_path,
+      original_title,
+      vote_average,
+      release_date,
+      movieGenres
+    );
   });
 
   movieList.innerHTML = searchRes;
@@ -131,18 +149,14 @@ const createListMovie = async () => {
         return genre ? genre.name : '';
       });
 
-      return `
-    <li class="movie__item" data-id=${id}>
-    <div class="movie__item_img">
-    <img src="https://image.tmdb.org/t/p/original${poster_path}" loading="lazy"/>
-    </div>
-    <p class="movie__item_title">${original_title}</p>
-    <span class="movie__item_rating">${vote_average.toFixed(1)}</span>
-    <span class="movie__item_genre">${movieGenres.join(', ')} | ${new Date(
-        release_date
-      ).getFullYear()} </span>
-    </li>
-    `;
+      return createSingleCardMovie(
+        id,
+        poster_path,
+        original_title,
+        vote_average,
+        release_date,
+        movieGenres
+      );
     })
     .join('');
   movieList.innerHTML = resFilm;
