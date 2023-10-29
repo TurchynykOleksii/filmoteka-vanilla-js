@@ -57,7 +57,9 @@ const createSingleCardMovie = (
     <span class="movie__item_rating">${vote_average.toFixed(1)}</span>
     <span class="movie__item_genre">${
       movieGenres ? movieGenres.join(', ') : ''
-    } ${isNaN(release_date) ? new Date(release_date).getFullYear() : ''} </span>
+    } ${movieGenres.length !== 0 && release_date !== '' ? '|' : ''} ${
+    isNaN(release_date) ? new Date(release_date).getFullYear() : ''
+  } </span>
     </li>
     `;
 };
